@@ -1,0 +1,135 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Bützackerweg
+  # Location required to calculate the time the sun rises and sets
+  latitude: 46.890845
+  longitude: 7.519196
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 521
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Zurich
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  base_url: belp.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - octoprint
+    - google_cast
+
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Sensors
+sensor:
+  # Weather prediction
+  - platform: yr
+    name: Wetter
+    forecast: 24
+    monitored_conditions:
+      - temperature
+      - symbol
+  - platform: template
+    sensors:
+      power:
+        friendly_name: "Energie Kaffeemaschine"
+        unit_of_measurement: "W"
+        value_template: "{{ states.switch.Kaffeemaschine.attributes.current_power_w }}"
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+  google_actions:
+    filter:
+      include_domains:
+        - cover
+        - switch
+        - light
+    entity_config:
+      switch.catdoor:
+        name: Katzentür
+        aliases:
+        - catdoor
+        - katzentur
+
+switch:
+  - platform: rest
+    name: Catdoor
+    resource: http://kubeapp.home.balou.in:32003/api/door
+    body_on: '{"unlocked": "true"}'
+    body_off: '{"unlocked": "false"}'
+    is_on_template: '{{ value_json.unlocked }}'
+    headers:
+      Content-Type: application/json
+  - platform: mystrom
+    host: 192.168.1.147
+    name: Kaffeemaschine
+
+
+elero:
+  transmitters:
+  - transmitter_id: 1
+    port: '/dev/ttyUSB0'
+
+zwave:
+  usb_path: /dev/ttyACM0
+  network_key: !secret network_key
+
+upnp:
+
+device_tracker:
+  - platform: swisscom
+    track_new_devices: no
+
+light:
+  - platform: nanoleaf_aurora
+    name: Nanoleaf
+    host: 192.168.1.139
+    token: !secret nanoleaf_token
+
+cover: !include covers.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

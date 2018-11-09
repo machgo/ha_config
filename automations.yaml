@@ -1,0 +1,71 @@
+- alias: Storen schliessen
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    - service: cover.close_cover
+      entity_id:
+      - cover.marco
+      - cover.balou
+      - cover.tisch
+      - cover.schlafzimmer
+    - service: cover.close_cover_tilt
+      entity_id: cover.kueche
+
+- alias: Storen öffnen - Wochentage
+  trigger:
+    platform: time
+    at: '06:30:00'
+  condition:
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    - service: cover.open_cover
+      entity_id:
+      - cover.marco
+      - cover.balou
+      - cover.tisch
+      - cover.schlafzimmer
+      - cover.kueche
+
+- alias: Storen öffnen - Wochenende
+  trigger:
+    platform: time
+    at: '08:30:00'
+  condition:
+    - condition: time
+      weekday:
+      - sat
+      - sun
+  action:
+    - service: cover.open_cover
+      entity_id:
+      - cover.marco
+      - cover.balou
+      - cover.tisch
+      - cover.schlafzimmer
+      - cover.kueche
+
+- alias: Weinachtsbeleuchtung
+  trigger:
+    - platform: state
+      entity_id: group.all_devices
+      from: 'not_home'
+      to: 'home'
+    - platform: sun
+      event: sunset
+  condition:
+    - condition: sun
+      after: sunset
+    - condition: state
+      entity_id: group.all_devices
+      state: 'home'
+  action:
+    - service: switch.turn_on
+      entity_id:
+      - switch.aeotec_zw075_smart_switch_gen5_switch

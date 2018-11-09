@@ -1,0 +1,44 @@
+sensor.none_kbytesec_sent:
+  hidden: true
+sensor.none_bytes_received:
+  hidden: true
+sensor.none_bytes_sent:
+  hidden: true
+sensor.none_kbytesec_received:
+  hidden: true
+sensor.none_packets_received:
+  hidden: true
+sensor.none_packets_sent:
+  hidden: true
+sensor.none_packetssec_received:
+  hidden: true
+sensor.none_packetssec_sent:
+  hidden: true
+sensor.aeotec_zw075_smart_switch_gen5_current:
+  hidden: true
+sensor.aeotec_zw075_smart_switch_gen5_energy:
+  hidden: true
+sensor.aeotec_zw075_smart_switch_gen5_power:
+  hidden: true
+sensor.aeotec_zw075_smart_switch_gen5_previous_reading:
+  hidden: true
+sensor.aeotec_zw075_smart_switch_gen5_voltage:
+  hidden: true
+sensor.aeotec_zw132_dual_nano_switch_alarm_level:
+  hidden: true
+sensor.aeotec_zw132_dual_nano_switch_alarm_type:
+  hidden: true
+sensor.aeotec_zw132_dual_nano_switch_energy:
+  hidden: true
+sensor.aeotec_zw132_dual_nano_switch_energy_2:
+  hidden: true
+sensor.aeotec_zw132_dual_nano_switch_energy_3:
+  hidden: true
+sensor.aeotec_zw132_dual_nano_switch_heat:
+  hidden: true
+sensor.aeotec_zw132_dual_nano_switch_power_management:
+  hidden: true
+sensor.aeotec_zw132_dual_nano_switch_sourcenodeid:
+  hidden: true
+switch.aeotec_zw132_dual_nano_switch_switch_3:
+  hidden: true

@@ -1,0 +1,52 @@
+- platform: elero
+  covers:
+    marco:
+      name: Marco
+      transmitter_id: 1
+      channel: 5
+      device_class: roller shutter
+      supported_features:
+          - up
+          - down
+          - stop
+          - close_tilt
+    balou:
+      name: Balou
+      transmitter_id: 1
+      channel: 2
+      device_class: roller shutter
+      supported_features:
+          - up
+          - down
+          - stop
+          - close_tilt
+    tisch:
+      name: Tisch
+      transmitter_id: 1
+      channel: 3
+      device_class: roller shutter
+      supported_features:
+          - up
+          - down
+          - stop
+          - close_tilt
+    kueche:
+      name: Kueche
+      transmitter_id: 1
+      channel: 4
+      device_class: roller shutter
+      supported_features:
+          - up
+          - stop
+          - close_tilt
+          - stop_tilt
+    schlafzimmer:
+      name: Schlafzimmer
+      transmitter_id: 1
+      channel: 6
+      device_class: roller shutter
+      supported_features:
+          - up
+          - down
+          - stop
+          - close_tilt
